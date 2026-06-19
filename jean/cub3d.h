@@ -4,4 +4,7 @@
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 
+int count_lines(char *file);
+int check_extension(char *filename);
+
 #endif
