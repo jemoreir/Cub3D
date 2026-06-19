@@ -6,17 +6,11 @@ int check_extension(char *filename)
 
 	len = ft_len(filename);
 	if (!filename || len < 5)
-	{
-		printf("Error: Invalid File Name.\n");
-		return (1);
-	}
+		return (treat_error(T_EXTENSION), 0);
 	if (filename[len - 4] != '.' || filename[len - 3] != 'c'
 		|| filename[len - 2] != 'u' || filename[len - 1] != 'b')
-		{
-			printf("Error: Invalid File Name.\n");
-			return (1);
-		}
-	return (0);
+		return (treat_error(T_EXTENSION), 0);
+	return (1);
 }
 
 int count_lines(char *file)
@@ -28,10 +22,7 @@ int count_lines(char *file)
 	fd = open(file, O_RDONLY);
 	r = 0;
 	if (fd < 0)
-	{
-		printf("Error: Cannot Open File.\n");
-		return (0);
-	}
+		return (treat_error(T_OPEN), -1);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -39,14 +30,31 @@ int count_lines(char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	printf("%i\n", r);
+	close(fd);
 	return (r);
 }
 
-/* char *receive_map(char *filename)
+char **file_to_array(char *filename)
 {
-	int fd;
+	int		fd;
+	int		i;
+	int		count;
+	char	**arr;
 
 	fd = open(filename, O_RDONLY);
-	return (NULL);
-} */
+	count = count_lines(filename);
+	if (fd < 0)
+		return (treat_error(T_OPEN), NULL);
+	arr = malloc(sizeof(char *) * (count + 1));
+	if (!arr)
+		return (treat_error(T_MALLOC), NULL);
+	i = 0;
+	while (i < count)
+	{
+		arr[i] = get_next_line(fd);
+		i++;
+	}
+	arr[i] = NULL;
+	close(fd);
+	return (arr);
+}

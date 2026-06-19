@@ -10,7 +10,7 @@ MLX_DIR = minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-SRC = cub3d.c valid_map.c
+SRC = cub3d.c valid_map.c error.c
 OBJ = $(SRC:.c=.o)
 
 all: $(MLX) $(NAME) $(LIBFT)
