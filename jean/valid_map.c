@@ -41,9 +41,9 @@ char	**file_to_array(char *filename)
 	int		count;
 	char	**arr;
 
-	fd = open(filename, O_RDONLY);
 	count = count_lines(filename);
-	if (fd < 0)
+	fd = open(filename, O_RDONLY);
+	if (count == -1 || fd < 0)
 		return (treat_error(T_OPEN), NULL);
 	arr = malloc(sizeof(char *) * (count + 1));
 	if (!arr)
@@ -52,6 +52,10 @@ char	**file_to_array(char *filename)
 	while (i < count)
 	{
 		arr[i] = get_next_line(fd);
+		if (!arr[i])
+			return (treat_error(T_OPEN), NULL);
+		if (arr[i][ft_len(arr[i]) - 1] == '\n')
+			arr[i][ft_len(arr[i]) - 1] = '\0';
 		i++;
 	}
 	arr[i] = NULL;
