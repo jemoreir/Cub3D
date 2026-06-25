@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jemoreir <jemoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 19:33:09 by jemoreir          #+#    #+#             */
-/*   Updated: 2025/05/06 20:46:16 by jemoreir         ###   ########.fr       */
+/*   Updated: 2026/06/25 16:21:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,3 @@ void	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
-/*int main(void)
-{
-	char str[] = "123456789";
-	char st[] = "000000000";
-
-	ft_bzero(str, 5);
-	bzero(st, 5);
-	for(int i = 0; i < 9; i++)
-	{
-		printf ("%c\n", str[i]);
-	}
-	for (int b = 0; b < 9; b++)
-	{
-		printf ("%c\n", st[b]);
-	}
-}*/

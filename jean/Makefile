@@ -2,7 +2,7 @@
 
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Iincludes
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -10,7 +10,7 @@ MLX_DIR = minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-SRC = cub3d.c valid_map.c error.c
+SRC = srcs/cub3d.c srcs/valid_map.c srcs/error.c srcs/inits.c srcs/cleaners.c
 OBJ = $(SRC:.c=.o)
 
 all: $(MLX) $(NAME) $(LIBFT)
