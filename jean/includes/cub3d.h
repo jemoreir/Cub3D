@@ -9,7 +9,8 @@ typedef enum e_error_type
 	T_MALLOC,
 	T_OPEN,
 	T_EXTENSION,
-	T_ARG
+	T_ARG,
+	T_GNL
 }   t_error_type;
 
 typedef struct s_cub
@@ -42,5 +43,6 @@ int		is_map_line(char *line);
 char	**file_to_array(char *filename);
 void	free_cub(t_cub *cub);
 void	init_cub(t_cub *cub);
+int		construct_array_cub(int fd, int count, char **array);
 
 #endif

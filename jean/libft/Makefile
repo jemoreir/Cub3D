@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/15 20:37:45 by jemoreir          #+#    #+#              #
-#    Updated: 2026/06/19 11:00:30 by marvin           ###   ########.fr        #
+#    Updated: 2026/06/27 21:41:38 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC= ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_memset.
 	ft_putendl_fd.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_split.c ft_lstnew.c\
 	ft_lstadd_front.c ft_lstsize.c ft_hexconv.c ft_print_hex.c ft_print_pointer.c\
 	ft_print_u.c ft_printf.c ft_printnbr.c ft_putchar.c ft_putstr.c get_next_line.c \
-	get_next_line_utils.c
+	get_next_line_utils.c ft_free_array.c ft_free_semi_array.c
 
 OBJECTS = $(SRC:.c=.o)
 

@@ -10,6 +10,8 @@ void treat_error(t_error_type error)
         printf("Error: invalid extension.\n");
 	else if (error == T_ARG)
         printf("Error: invalid arguments.\n");
+    else if (error == T_GNL)
+		printf("Error: GNL error.\n");
     else
         printf("Error: Unknown.\n");
 }

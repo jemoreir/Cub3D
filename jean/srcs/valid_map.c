@@ -37,28 +37,23 @@ int	count_lines(char *file)
 char	**file_to_array(char *filename)
 {
 	int		fd;
-	int		i;
 	int		count;
 	char	**arr;
 
 	count = count_lines(filename);
+	if (count < 0)
+		return (NULL);
 	fd = open(filename, O_RDONLY);
-	if (count == -1 || fd < 0)
+	if (fd < 0)
 		return (treat_error(T_OPEN), NULL);
 	arr = malloc(sizeof(char *) * (count + 1));
 	if (!arr)
-		return (treat_error(T_MALLOC), NULL);
-	i = 0;
-	while (i < count)
+		return (close(fd),treat_error(T_MALLOC), NULL);
+	if (!construct_array_cub(fd, count, arr))
 	{
-		arr[i] = get_next_line(fd);
-		if (!arr[i])
-			return (treat_error(T_OPEN), NULL);
-		if (arr[i][ft_len(arr[i]) - 1] == '\n')
-			arr[i][ft_len(arr[i]) - 1] = '\0';
-		i++;
+		close(fd);
+		return (NULL);
 	}
-	arr[i] = NULL;
 	close(fd);
 	return (arr);
 }
