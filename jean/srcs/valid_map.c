@@ -48,7 +48,11 @@ char	**file_to_array(char *filename)
 		return (treat_error(T_OPEN), NULL);
 	arr = malloc(sizeof(char *) * (count + 1));
 	if (!arr)
-		return (close(fd),treat_error(T_MALLOC), NULL);
+	{
+		close(fd);
+		treat_error(T_MALLOC);
+		return (NULL);
+	}
 	if (!construct_array_cub(fd, count, arr))
 	{
 		close(fd);
