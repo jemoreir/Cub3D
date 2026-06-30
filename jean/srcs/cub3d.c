@@ -8,10 +8,9 @@ int main(int ac, char *av[])
 		return (1);
 	t_cub cub;
 	init_cub(&cub);
-	char **test;
-	test = file_to_array(av[1]);
-	for (int i; test[i]; i++)
-		printf("%s\n", test[i]);
+	cub.file_lines = file_to_array(av[1]);
+	for (int i = 0; cub.file_lines[i]; i++)
+		printf("%s\n", cub.file_lines[i]);
 	printf("%i", cub.count_player);
 	free_cub(&cub);
 	return (0);
