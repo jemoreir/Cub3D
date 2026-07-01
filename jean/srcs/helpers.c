@@ -23,3 +23,19 @@ int construct_array_cub(int fd, int count, char **array)
 	array[i] = NULL;
 	return (1);
 }
+
+int line_has_char(char *line, char c)
+{
+	int	i;
+
+	if (!line || !c)
+		return (0);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}

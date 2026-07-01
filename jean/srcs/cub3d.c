@@ -9,9 +9,8 @@ int main(int ac, char *av[])
 	t_cub cub;
 	init_cub(&cub);
 	cub.file_lines = file_to_array(av[1]);
-	for (int i = 0; cub.file_lines[i]; i++)
-		printf("%s\n", cub.file_lines[i]);
-	printf("%i", cub.count_player);
+	cub.map_start = find_start_map(&cub);
+	printf("%i\n", cub.map_start);
 	free_cub(&cub);
 	return (0);
 }

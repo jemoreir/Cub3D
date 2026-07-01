@@ -80,3 +80,19 @@ int	is_map_line(char *line)
 	}
 	return (1);
 }
+
+int find_start_map(t_cub *cub)
+{
+	int i;
+
+	if (!cub || !cub->file_lines)
+		return (-1);
+	i = 0;
+	while (cub->file_lines[i])
+	{
+		if (is_map_line(cub->file_lines[i]) && line_has_char(cub->file_lines[i], '1'))
+			return (i);
+		i++;
+	}
+	return (-1);
+}

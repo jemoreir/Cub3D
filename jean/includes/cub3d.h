@@ -44,5 +44,7 @@ char	**file_to_array(char *filename);
 void	free_cub(t_cub *cub);
 void	init_cub(t_cub *cub);
 int		construct_array_cub(int fd, int count, char **array);
+int		line_has_char(char *line, char c);
+int		find_start_map(t_cub *cub);
 
 #endif
