@@ -22,6 +22,7 @@ typedef struct s_cub
 	char	*west_t;
 	char	*east_t;
 	int		map_start;
+	int		map_end;
 	int		floor_rgb[3];
 	int		sky_rgb[3];
 	int		has_no;
@@ -46,5 +47,8 @@ void	init_cub(t_cub *cub);
 int		construct_array_cub(int fd, int count, char **array);
 int		line_has_char(char *line, char c);
 int		find_start_map(t_cub *cub);
+int		has_map_content(char *line);
+int		valid_map_block(t_cub *cub);
+int		is_border_wall_line(char *line);
 
 #endif

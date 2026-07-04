@@ -86,13 +86,16 @@ int find_start_map(t_cub *cub)
 	int i;
 
 	if (!cub || !cub->file_lines)
-		return (-1);
+		return (0);
 	i = 0;
 	while (cub->file_lines[i])
 	{
 		if (is_map_line(cub->file_lines[i]) && line_has_char(cub->file_lines[i], '1'))
-			return (i);
+		{
+			cub->map_start = i;
+			return (1);
+		}	
 		i++;
 	}
-	return (-1);
+	return (0);
 }
