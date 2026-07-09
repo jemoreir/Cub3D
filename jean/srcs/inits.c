@@ -12,14 +12,30 @@ void init_cub(t_cub *cub)
 void extract_map(t_cub *cub)
 {
 	int	i;
+	int	map_it;
 	int	map_size;
 
+	map_it = 0;
+	if (!cub || !cub->file_lines || cub->map_start == -1 || cub->map_end == -1)
+		return;
 	map_size = cub->map_end - cub->map_start + 1;
-	i = 0;
-	if (!cub || !cub->file_lines || cub->map_start == -1)
-		return (0);
-	while (i < map_size)
+	cub->map = malloc(map_size);
+	if (!cub->map)
 	{
-		cub->map[i] = ft_strdup(cub->file_lines[cub-])
+		treat_error(T_MALLOC);
+		return;
+	}
+	i = cub->map_start;
+	while (i < cub->map_end)
+	{
+		cub->map[map_it] = ft_strdup(cub->file_lines[i]);
+		if (!cub->map[map_it])
+		{
+			free_cub(cub);
+			treat_error(T_MALLOC);
+			return;
+		}
+		map_it++;
+		i++;
 	}
 }
