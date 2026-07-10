@@ -9,7 +9,7 @@ void init_cub(t_cub *cub)
 	cub->player_y = -1;
 }
 
-void extract_map(t_cub *cub)
+int extract_map(t_cub *cub)
 {
 	int	i;
 	int	map_it;
@@ -17,25 +17,20 @@ void extract_map(t_cub *cub)
 
 	map_it = 0;
 	if (!cub || !cub->file_lines || cub->map_start == -1 || cub->map_end == -1)
-		return;
+		return (0);
 	map_size = cub->map_end - cub->map_start + 1;
-	cub->map = malloc(map_size);
+	cub->map = malloc(sizeof (char *) * (map_size + 1));
 	if (!cub->map)
-	{
-		treat_error(T_MALLOC);
-		return;
-	}
+		return (treat_error(T_MALLOC), 0);
 	i = cub->map_start;
-	while (i < cub->map_end)
+	while (i <= cub->map_end)
 	{
 		cub->map[map_it] = ft_strdup(cub->file_lines[i]);
 		if (!cub->map[map_it])
-		{
-			free_cub(cub);
-			treat_error(T_MALLOC);
-			return;
-		}
+			return (treat_error(T_MALLOC), 0);
 		map_it++;
 		i++;
 	}
+	cub->map[map_it] = NULL;
+	return (1);
 }

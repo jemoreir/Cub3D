@@ -13,7 +13,7 @@ int	check_extension(char *filename)
 	return (1);
 }
 
-int	count_lines(char *file)
+int	count_lines(char *file) /*Colocar dps na libft*/
 {
 	char	*line;
 	int		r;
@@ -34,7 +34,7 @@ int	count_lines(char *file)
 	return (r);
 }
 
-char	**file_to_array(char *filename)
+char	**file_to_array(char *filename) /*Colocar dps na libft*/
 {
 	int		fd;
 	int		count;
@@ -81,6 +81,31 @@ int	is_map_line(char *line)
 	return (1);
 }
 
+int is_config_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (!line)
+		return (0);
+	if (line[i + 1] == 'O' && (line[i] == 'N' || line[i] == 'S'))
+	{
+		if (!ft_is_space(line[i + 2]))
+			return (0);
+		return (1);
+	}
+	if ((line[i] == 'W' && line[i + 1] == 'E')
+		|| (line[i] == 'E' && line[i + 1] == 'A'))
+	{
+		if (!ft_is_space(line[i + 2]))
+			return (0);
+		return (1);
+	}
+	if ((line[i] == 'F' || line[i] == 'C') && ft_is_space(line[i + 1]))
+		return (1);
+	return (0);
+}
+
 int find_start_map(t_cub *cub)
 {
 	int i;
@@ -90,12 +115,33 @@ int find_start_map(t_cub *cub)
 	i = 0;
 	while (cub->file_lines[i])
 	{
-		if (is_map_line(cub->file_lines[i]) && line_has_char(cub->file_lines[i], '1'))
+		if (cub->file_lines[i][0] == '\0' || is_config_line(cub->file_lines[i]))
+		{
+			i++;
+			continue;
+		}
+		if (is_map_line(cub->file_lines[i]) && has_map_content(cub->file_lines[i]))
 		{
 			cub->map_start = i;
 			return (1);
 		}	
-		i++;
+		else
+			return (treat_error(T_MAP), 0);
 	}
+	return (treat_error(T_MAP), 0);
+}
+
+int valid_border_map(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	if (!cub || !cub->map || !cub->map[0])
+		return (0);
+	while (cub->map[i])
+		i++;
+	i--;
+	if (is_border_wall_line(cub->map[0]) && is_border_wall_line(cub->map[i]))
+		return (1);
 	return (0);
 }

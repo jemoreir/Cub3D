@@ -12,6 +12,8 @@ void treat_error(t_error_type error)
         printf("Error: invalid arguments.\n");
     else if (error == T_GNL)
 		printf("Error: GNL error.\n");
+    else if (error == T_MAP)
+        printf("Error: MAP");
     else
         printf("Error: Unknown.\n");
 }

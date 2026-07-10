@@ -89,7 +89,7 @@ int valid_map_block(t_cub *cub)
 	{
 		if (!is_map_line(cub->file_lines[i])
 			|| !has_map_content(cub->file_lines[i]))
-			return (0);
+			return (treat_error(T_MAP), 0);
 		i++;
 	}
 	cub->map_end = i - 1;

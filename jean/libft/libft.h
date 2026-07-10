@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 11:14:32 by jemoreir          #+#    #+#             */
-/*   Updated: 2026/06/27 21:42:46 by marvin           ###   ########.fr       */
+/*   Updated: 2026/07/10 13:42:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ char	*ft_substr_get(char const *s, unsigned int start, size_t len);
 char	*ft_check_error_get(int n, char *nline, char *buffer);
 void	ft_free_semi_array(char **array, int c);
 void	ft_free_array(char **array);
+int		ft_is_space(int c);
 
 #endif

@@ -9,8 +9,12 @@ int main(int ac, char *av[])
 	t_cub cub;
 	init_cub(&cub);
 	cub.file_lines = file_to_array(av[1]);
-	cub.map_start = find_start_map(&cub);
-	printf("%i\n", cub.map_start);
+	if (!cub.file_lines)
+		return (0);
+	if (!find_start_map(&cub) || !valid_map_block(&cub) || !extract_map(&cub))
+		return (free_cub(&cub), 0);
+	for (int i = 0; cub.map[i]; i++)
+		printf("%s\n", cub.map[i]);
 	free_cub(&cub);
 	return (0);
 }

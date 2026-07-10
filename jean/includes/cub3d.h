@@ -10,7 +10,8 @@ typedef enum e_error_type
 	T_OPEN,
 	T_EXTENSION,
 	T_ARG,
-	T_GNL
+	T_GNL,
+	T_MAP
 }   t_error_type;
 
 typedef struct s_cub
@@ -50,5 +51,8 @@ int		find_start_map(t_cub *cub);
 int		has_map_content(char *line);
 int		valid_map_block(t_cub *cub);
 int		is_border_wall_line(char *line);
+int		extract_map(t_cub *cub);
+int		is_config_line(char *line);
+int		valid_border_map(t_cub *cub);
 
 #endif
