@@ -13,8 +13,8 @@ int main(int ac, char *av[])
 		return (0);
 	if (!find_start_map(&cub) || !valid_map_block(&cub) || !extract_map(&cub))
 		return (free_cub(&cub), 0);
-	for (int i = 0; cub.map[i]; i++)
-		printf("%s\n", cub.map[i]);
+	for (int i = 0; cub.map.grid[i]; i++)
+		printf("%s\n", cub.map.grid[i]);
 	free_cub(&cub);
 	return (0);
 }

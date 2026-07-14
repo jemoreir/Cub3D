@@ -27,71 +27,51 @@ int construct_array_cub(int fd, int count, char **array)
 	return (1);
 }
 
-int line_has_char(char *line, char c)
+int	count_lines(char *file)
 {
-	int	i;
+	char	*line;
+	int		r;
+	int		fd;
 
-	if (!line)
-		return (0);
-	i = 0;
-	while (line[i])
+	fd = open(file, O_RDONLY);
+	r = 0;
+	if (fd < 0)
+		return (treat_error(T_OPEN), -1);
+	line = get_next_line(fd);
+	while (line)
 	{
-		if (line[i] == c)
-			return (1);
-		i++;
+		r++;
+		free(line);
+		line = get_next_line(fd);
 	}
-	return (0);
+	close(fd);
+	return (r);
 }
 
-int is_border_wall_line(char *line)
+char	**file_to_array(char *filename)
 {
-	int	i;
+	int		fd;
+	int		count;
+	char	**arr;
 
-	i = 0;
-	if (!line || !line[i])
-		return (0);
-	if (!line_has_char(line, '1'))
-		return (0);
-	while (line[i])
+	count = count_lines(filename);
+	if (count < 0)
+		return (NULL);
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (treat_error(T_OPEN), NULL);
+	arr = malloc(sizeof(char *) * (count + 1));
+	if (!arr)
 	{
-		if (line[i] != '1' && line[i] != ' ')
-			return (0);
-		i++;
+		close(fd);
+		treat_error(T_MALLOC);
+		return (NULL);
 	}
-	return (1);
-}
-
-int has_map_content(char *line)
-{
-	int	i;
-
-	i = 0;
-	if (!line)
-		return (0);
-	while (line[i])
+	if (!construct_array_cub(fd, count, arr))
 	{
-		if (line[i] == '1' || line[i] == '0' || line[i] == 'N'
-			|| line[i] == 'W' || line[i] == 'S' || line[i] == 'E')
-			return (1);
-		i++;
+		close(fd);
+		return (NULL);
 	}
-	return (0);
-}
-
-int valid_map_block(t_cub *cub)
-{
-	int	i;
-
-	if (!cub || !cub->file_lines || cub->map_start == -1)
-		return (0);
-	i = cub->map_start;
-	while (cub->file_lines[i])
-	{
-		if (!is_map_line(cub->file_lines[i])
-			|| !has_map_content(cub->file_lines[i]))
-			return (treat_error(T_MAP), 0);
-		i++;
-	}
-	cub->map_end = i - 1;
-	return (1);
+	close(fd);
+	return (arr);
 }

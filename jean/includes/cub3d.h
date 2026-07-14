@@ -14,10 +14,19 @@ typedef enum e_error_type
 	T_MAP
 }   t_error_type;
 
+typedef struct t_map
+{
+	char	**grid;
+	char	player_dir;
+	int		height;
+	int		player_x;
+	int		player_y;
+}	t_map;
+
 typedef struct s_cub
 {
+	t_map	map;
 	char	**file_lines;
-	char	**map;
 	char	*north_t;
 	char	*south_t;
 	char	*west_t;
@@ -32,9 +41,6 @@ typedef struct s_cub
 	int		has_ea;
 	int		has_floor;
 	int		has_sky;
-	int		player_x;
-	int		player_y;
-	char	player_dir;
 	int		count_player;
 }	t_cub;
 
@@ -54,5 +60,10 @@ int		is_border_wall_line(char *line);
 int		extract_map(t_cub *cub);
 int		is_config_line(char *line);
 int		valid_border_map(t_cub *cub);
+void	free_map(t_map *map);
+void	init_map(t_map *map);
+int		find_player(t_cub *cub);
+t_map	*cpy_map(t_cub *cub);
+int		is_out_of_map(int y, int x, t_cub *cub);
 
 #endif

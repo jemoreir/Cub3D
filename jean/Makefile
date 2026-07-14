@@ -11,7 +11,7 @@ MLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 SRC = srcs/cub3d.c srcs/valid_map.c srcs/error.c srcs/inits.c srcs/cleaners.c \
-	srcs/helpers.c
+	srcs/helpers.c srcs/map_helpers.c srcs/checks.c
 OBJ = $(SRC:.c=.o)
 
 all: $(MLX) $(NAME) $(LIBFT)
