@@ -13,7 +13,7 @@ void treat_error(t_error_type error)
     else if (error == T_GNL)
 		printf("Error: GNL error.\n");
     else if (error == T_MAP)
-        printf("Error: MAP");
-    else
-        printf("Error: Unknown.\n");
+        printf("Error: MAP.\n");
+    else if (error == T_CONFIG)
+        printf("Error: CONFIG.\n");
 }

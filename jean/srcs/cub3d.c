@@ -13,8 +13,8 @@ int main(int ac, char *av[])
 		return (0);
 	if (!find_start_map(&cub) || !valid_map_block(&cub) || !extract_map(&cub))
 		return (free_cub(&cub), 0);
-	for (int i = 0; cub.map.grid[i]; i++)
-		printf("%s\n", cub.map.grid[i]);
+	if (!find_player(&cub) || !valid_border_map(&cub) || !valid_closed_map(&cub.map))
+		return (free_cub(&cub), 0);
 	free_cub(&cub);
 	return (0);
 }

@@ -19,13 +19,12 @@ int extract_map(t_cub *cub)
 {
 	int	i;
 	int	map_it;
-	int	map_size;
 
 	map_it = 0;
 	if (!cub || !cub->file_lines || cub->map_start == -1 || cub->map_end == -1)
 		return (0);
-	map_size = cub->map_end - cub->map_start + 1;
-	cub->map.grid = malloc(sizeof (char *) * (map_size + 1));
+	cub->map.height = cub->map_end - cub->map_start + 1;
+	cub->map.grid = malloc(sizeof (char *) * (cub->map.height + 1));
 	if (!cub->map.grid)
 		return (treat_error(T_MALLOC), 0);
 	i = cub->map_start;

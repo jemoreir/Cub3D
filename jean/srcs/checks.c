@@ -73,15 +73,13 @@ int line_has_char(char *line, char c)
 	return (0);
 }
 
-int is_out_of_map(int y, int x, t_cub *cub)
+int is_out_of_map(int y, int x, t_map *map)
 {
-	int	size_map;
 	int	len;
 
-	size_map = cub->map_end - cub->map_start + 1;
-	if (y < 0 || y >= size_map)
+	if (y < 0 || y >= map->height)
 		return (1);
-	len = ft_len(cub->map.grid[y]);
+	len = ft_len(map->grid[y]);
 	if (x < 0 || x >= len)
 		return (1);
 	return (0);

@@ -11,8 +11,20 @@ typedef enum e_error_type
 	T_EXTENSION,
 	T_ARG,
 	T_GNL,
-	T_MAP
+	T_MAP,
+	T_CONFIG
 }   t_error_type;
+
+typedef enum e_config_id
+{
+	T_INVALID,
+	T_NO,
+	T_SO,
+	T_WE,
+	T_EA,
+	T_F,
+	T_C
+}	t_config_id;
 
 typedef struct t_map
 {
@@ -63,7 +75,12 @@ int		valid_border_map(t_cub *cub);
 void	free_map(t_map *map);
 void	init_map(t_map *map);
 int		find_player(t_cub *cub);
-t_map	*cpy_map(t_cub *cub);
-int		is_out_of_map(int y, int x, t_cub *cub);
+t_map	*cpy_map(t_map *map);
+int		is_out_of_map(int y, int x, t_map *map);
+int		valid_closed_map(t_map *map);
+int		set_no(t_cub *cub, char *line);
+int		set_so(t_cub *cub, char *line);
+int		set_we(t_cub *cub, char *line);
+int		set_ea(t_cub *cub, char *line);
 
 #endif
