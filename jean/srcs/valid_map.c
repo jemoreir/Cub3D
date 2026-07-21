@@ -1,8 +1,8 @@
 #include "cub3d.h"
 
-int find_start_map(t_cub *cub)
+int	find_start_map(t_cub *cub)
 {
-	int i;
+	int	i;
 
 	if (!cub || !cub->file_lines)
 		return (0);
@@ -12,21 +12,22 @@ int find_start_map(t_cub *cub)
 		if (cub->file_lines[i][0] == '\0' || is_config_line(cub->file_lines[i]))
 		{
 			i++;
-			continue;
+			continue ;
 		}
-		if (is_map_line(cub->file_lines[i]) && has_map_content(cub->file_lines[i])
+		if (is_map_line(cub->file_lines[i])
+			&& has_map_content(cub->file_lines[i])
 			&& line_has_char(cub->file_lines[i], '1'))
 		{
 			cub->map_start = i;
 			return (1);
-		}	
+		}
 		else
 			return (treat_error(T_CONFIG), 0);
 	}
 	return (treat_error(T_CONFIG), 0);
 }
 
-int valid_map_block(t_cub *cub)
+int	valid_map_block(t_cub *cub)
 {
 	int	i;
 
@@ -44,7 +45,7 @@ int valid_map_block(t_cub *cub)
 	return (1);
 }
 
-int valid_border_map(t_cub *cub)
+int	valid_border_map(t_cub *cub)
 {
 	int	i;
 

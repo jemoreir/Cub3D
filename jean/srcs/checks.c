@@ -7,8 +7,8 @@ int	check_extension(char *filename)
 	len = ft_len(filename);
 	if (!filename || len < 5)
 		return (treat_error(T_EXTENSION), 0);
-	if (filename[len - 4] != '.' || filename[len - 3] != 'c' || filename[len
-		- 2] != 'u' || filename[len - 1] != 'b')
+	if (filename[len - 4] != '.' || filename[len - 3] != 'c'
+		|| filename[len - 2] != 'u' || filename[len - 1] != 'b')
 		return (treat_error(T_EXTENSION), 0);
 	return (1);
 }
@@ -25,14 +25,15 @@ int	is_map_line(char *line)
 	while (line[i])
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'N'
-			&& line[i] != 'W' && line[i] != 'S' && line[i] != 'E' && line[i] != ' ')
+			&& line[i] != 'W' && line[i] != 'S' && line[i]
+			!= 'E' && line[i] != ' ')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int is_config_line(char *line)
+int	is_config_line(char *line)
 {
 	int	i;
 
@@ -59,7 +60,7 @@ int is_config_line(char *line)
 	return (0);
 }
 
-int line_has_char(char *line, char c)
+int	line_has_char(char *line, char c)
 {
 	int	i;
 
@@ -75,7 +76,7 @@ int line_has_char(char *line, char c)
 	return (0);
 }
 
-int is_out_of_map(int y, int x, t_map *map)
+int	is_out_of_map(int y, int x, t_map *map)
 {
 	int	len;
 

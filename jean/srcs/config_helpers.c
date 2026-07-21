@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-t_config_id define_config_id(char *line)
+t_config_id	define_config_id(char *line)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ t_config_id define_config_id(char *line)
 	return (T_INVALID);
 }
 
-int find_start_path(char *line)
+int	find_start_path(char *line)
 {
 	int	i;
 
@@ -73,7 +73,7 @@ int	define_path(char *line, t_cub *cub)
 	return (1);
 }
 
-int valid_configs(t_cub *cub)
+int	valid_configs(t_cub *cub)
 {
 	int	i;
 
@@ -85,7 +85,7 @@ int valid_configs(t_cub *cub)
 		if (!cub->file_lines[i][0])
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		if (!define_path(cub->file_lines[i], cub))
 			return (0);

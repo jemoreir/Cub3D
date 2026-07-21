@@ -1,9 +1,9 @@
 #include "cub3d.h"
 
-int set_floor(char *line, t_cub *cub)
+int	set_floor(char *line, t_cub *cub)
 {
-	int	start;
-	t_config config;
+	t_config	config;
+	int			start;
 
 	init_config(&config);
 	start = find_start_path(line);
@@ -27,10 +27,10 @@ int set_floor(char *line, t_cub *cub)
 	return (1);
 }
 
-int set_ceiling(char *line, t_cub *cub)
+int	set_ceiling(char *line, t_cub *cub)
 {
-	int	start;
-	t_config config;
+	t_config	config;
+	int			start;
 
 	init_config(&config);
 	start = find_start_path(line);
@@ -54,7 +54,7 @@ int set_ceiling(char *line, t_cub *cub)
 	return (1);
 }
 
-int set_color(t_config_id id, t_cub *cub, char *line)
+int	set_color(t_config_id id, t_cub *cub, char *line)
 {
 	if (id == T_C)
 		return (set_ceiling(line, cub));

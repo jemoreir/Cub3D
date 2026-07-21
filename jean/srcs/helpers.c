@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int construct_array_cub(int fd, int count, char **array)
+int	construct_array_cub(int fd, int count, char **array)
 {
 	int		i;
 	int		len;

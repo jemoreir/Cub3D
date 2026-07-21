@@ -1,5 +1,5 @@
 #ifndef CUB3D_H
-# define CUB3d_H
+# define CUB3D_H
 
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
@@ -13,7 +13,7 @@ typedef enum e_error_type
 	T_GNL,
 	T_MAP,
 	T_CONFIG
-}   t_error_type;
+}	t_error_type;
 
 typedef enum e_config_id
 {
@@ -82,7 +82,6 @@ int		valid_border_map(t_cub *cub);
 void	free_map(t_map *map);
 void	init_map(t_map *map);
 int		find_player(t_cub *cub);
-t_map	*cpy_map(t_map *map);
 int		is_out_of_map(int y, int x, t_map *map);
 int		valid_closed_map(t_map *map);
 int		set_no(t_cub *cub, char *line);
@@ -90,7 +89,6 @@ int		set_so(t_cub *cub, char *line);
 int		set_we(t_cub *cub, char *line);
 int		set_ea(t_cub *cub, char *line);
 int		find_start_path(char *line);
-int		valid_textures(t_cub *cub);
 void	init_config(t_config *config);
 int		check_parameters(t_config *config, int *i);
 int		set_element_color_floor(t_cub *cub, t_config *c, int *i, char *line);
