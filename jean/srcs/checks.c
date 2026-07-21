@@ -39,6 +39,8 @@ int is_config_line(char *line)
 	i = 0;
 	if (!line)
 		return (0);
+	while (line[i] && ft_is_space(line[i]))
+		i++;
 	if (line[i + 1] == 'O' && (line[i] == 'N' || line[i] == 'S'))
 	{
 		if (!ft_is_space(line[i + 2]))

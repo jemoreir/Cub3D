@@ -14,15 +14,16 @@ int find_start_map(t_cub *cub)
 			i++;
 			continue;
 		}
-		if (is_map_line(cub->file_lines[i]) && has_map_content(cub->file_lines[i]))
+		if (is_map_line(cub->file_lines[i]) && has_map_content(cub->file_lines[i])
+			&& line_has_char(cub->file_lines[i], '1'))
 		{
 			cub->map_start = i;
 			return (1);
 		}	
 		else
-			return (treat_error(T_MAP), 0);
+			return (treat_error(T_CONFIG), 0);
 	}
-	return (treat_error(T_MAP), 0);
+	return (treat_error(T_CONFIG), 0);
 }
 
 int valid_map_block(t_cub *cub)
@@ -56,5 +57,5 @@ int valid_border_map(t_cub *cub)
 	if (is_border_wall_line(cub->map.grid[0])
 		&& is_border_wall_line(cub->map.grid[i]))
 		return (1);
-	return (0);
+	return (treat_error(T_MAP), 0);
 }

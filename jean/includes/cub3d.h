@@ -26,7 +26,14 @@ typedef enum e_config_id
 	T_C
 }	t_config_id;
 
-typedef struct t_map
+typedef struct s_config
+{
+	int	comp;
+	int	sep;
+	int	has_d;
+}	t_config;
+
+typedef struct s_map
 {
 	char	**grid;
 	char	player_dir;
@@ -46,13 +53,13 @@ typedef struct s_cub
 	int		map_start;
 	int		map_end;
 	int		floor_rgb[3];
-	int		sky_rgb[3];
+	int		ceil_rgb[3];
 	int		has_no;
 	int		has_so;
 	int		has_we;
 	int		has_ea;
 	int		has_floor;
-	int		has_sky;
+	int		has_ceil;
 	int		count_player;
 }	t_cub;
 
@@ -82,5 +89,14 @@ int		set_no(t_cub *cub, char *line);
 int		set_so(t_cub *cub, char *line);
 int		set_we(t_cub *cub, char *line);
 int		set_ea(t_cub *cub, char *line);
+int		find_start_path(char *line);
+int		valid_textures(t_cub *cub);
+void	init_config(t_config *config);
+int		check_parameters(t_config *config, int *i);
+int		set_element_color_floor(t_cub *cub, t_config *c, int *i, char *line);
+int		set_element_color_ceil(t_cub *cub, t_config *c, int *i, char *line);
+int		set_color(t_config_id id, t_cub *cub, char *line);
+int		valid_configs(t_cub *cub);
+int		parsing_cub(char *filename, t_cub *cub);
 
 #endif

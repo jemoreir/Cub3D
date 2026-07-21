@@ -15,6 +15,11 @@ void init_map(t_map *map)
 	map->player_y = -1;
 }
 
+void init_config(t_config *config)
+{
+	ft_bzero(config, sizeof(t_config));
+}
+
 int extract_map(t_cub *cub)
 {
 	int	i;

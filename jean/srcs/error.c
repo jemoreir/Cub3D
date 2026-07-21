@@ -3,15 +3,15 @@
 void treat_error(t_error_type error)
 {
     if (error == T_MALLOC)
-        printf("Error: malloc.\n");
+        printf("Error: MALLOC.\n");
     else if (error == T_OPEN)
-        printf("Error: open.\n");
+        printf("Error: OPEN.\n");
     else if (error == T_EXTENSION)
-        printf("Error: invalid extension.\n");
+        printf("Error: INVALID EXTENSION.\n");
 	else if (error == T_ARG)
-        printf("Error: invalid arguments.\n");
+        printf("Error: INVALID ARGUMENTS.\n");
     else if (error == T_GNL)
-		printf("Error: GNL error.\n");
+		printf("Error: GNL.\n");
     else if (error == T_MAP)
         printf("Error: MAP.\n");
     else if (error == T_CONFIG)

@@ -43,24 +43,24 @@ int find_start_path(char *line)
 	while (ft_is_space(line[i]))
 		i++;
 	if (!line[i])
-		return (-1);
+		return (treat_error(T_CONFIG), -1);
 	return (i);
 }
 
-int	define_path_textures(char *line, t_cub *cub)
+int	define_path(char *line, t_cub *cub)
 {
 	t_config_id	id;
-	int			i;
 	int			val;
 
-	i = 0;
 	val = 0;
 	if (!cub || !line || !line[0])
 		return (0);
 	id = define_config_id(line);
-	if (id == T_INVALID || id == T_F || id == T_C)
+	if (id == T_INVALID)
 		return (0);
-	if (id == T_NO)
+	if (id == T_C || id == T_F)
+		val = set_color(id, cub, line);
+	else if (id == T_NO)
 		val = set_no(cub, line);
 	else if (id == T_SO)
 		val = set_so(cub, line);
@@ -70,5 +70,29 @@ int	define_path_textures(char *line, t_cub *cub)
 		val = set_ea(cub, line);
 	if (val == 0)
 		return (0);
+	return (1);
+}
+
+int valid_configs(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	if (!cub || !cub->file_lines)
+		return (0);
+	while (i < cub->map_start)
+	{
+		if (!cub->file_lines[i][0])
+		{
+			i++;
+			continue;
+		}
+		if (!define_path(cub->file_lines[i], cub))
+			return (0);
+		i++;
+	}
+	if (!cub->has_no || !cub->has_so || !cub->has_ea || !cub->has_we
+		|| !cub->has_ceil || !cub->has_floor)
+		return (treat_error(T_CONFIG), 0);
 	return (1);
 }
