@@ -16,4 +16,8 @@ void	treat_error(t_error_type error)
 		printf("Error: MAP.\n");
 	else if (error == T_CONFIG)
 		printf("Error: CONFIG.\n");
+	else if (error == T_PATH)
+		printf("Error: PATH.\n");
+	else if (error == T_CONTENT)
+		printf("Error: CONTENT.\n");
 }

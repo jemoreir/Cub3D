@@ -19,3 +19,8 @@ void	init_config(t_config *config)
 {
 	ft_bzero(config, sizeof(t_config));
 }
+
+void	init_bzero_game(t_game *game)
+{
+	ft_bzero(game, sizeof(t_game));
+}

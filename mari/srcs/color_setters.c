@@ -13,6 +13,8 @@ int	set_floor(char *line, t_cub *cub)
 		return (treat_error(T_CONFIG), 0);
 	while (line[start])
 	{
+		while (ft_is_space(line[start]))
+			start++;
 		if (!ft_isdigit(line[start]) && line[start] != ',')
 			return (treat_error(T_CONFIG), 0);
 		if (line[start] == ',' && !check_parameters(&config, &start))
@@ -40,6 +42,8 @@ int	set_ceiling(char *line, t_cub *cub)
 		return (treat_error(T_CONFIG), 0);
 	while (line[start])
 	{
+		while (ft_is_space(line[start]))
+			start++;
 		if (!ft_isdigit(line[start]) && line[start] != ',')
 			return (treat_error(T_CONFIG), 0);
 		if (line[start] == ',' && !check_parameters(&config, &start))

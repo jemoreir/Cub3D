@@ -2,16 +2,26 @@
 
 int	init_game(t_cub *cub)
 {
+	init_bzero_game(&cub->game);
 	cub->game.mlx = mlx_init();
 	if (!cub->game.mlx)
+	{
+		free_game(&cub->game);
 		return (treat_error(T_MALLOC), 0);
+	}
+	if (!init_image(cub) || !load_textures(cub))
+	{
+		free_game(&cub->game);
+		return (0);
+	}
 	cub->game.win = mlx_new_window(cub->game.mlx,
 			WIDTH, HEIGHT, "cub3D");
 	if (!cub->game.win)
+	{
+		free_game(&cub->game);
 		return (0);
+	}
 	init_player(cub);
-	if (!init_image(cub) || !load_textures(cub))
-		return (0);
 	return (1);
 }
 

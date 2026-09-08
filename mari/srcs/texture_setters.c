@@ -1,4 +1,27 @@
 #include "cub3d.h"
+#include <sys/stat.h>
+
+static int	check_path(char *line)
+{
+	int	start;
+	int	len;
+	struct stat path_stat;
+
+	start = find_start_path(line);
+	if (start == -1)
+		return (-1);
+	len = ft_len(line);
+	if (len < 5)
+		return (treat_error(T_PATH), -1);
+	if (line[len - 1] != 'm' || line[len - 2] != 'p'
+		|| line[len - 3] != 'x' || line[len - 4] != '.')
+		return (treat_error(T_EXTENSION), -1);
+	if (stat(&line[start], &path_stat) || !S_ISREG(path_stat.st_mode))
+		return(treat_error(T_PATH), -1);
+	if (!path_stat.st_size)
+		return (treat_error(T_CONTENT), -1);
+	return (start);
+}
 
 int	set_no(t_cub *cub, char *line)
 {
@@ -6,7 +29,7 @@ int	set_no(t_cub *cub, char *line)
 	int	len;
 	int	fd;
 
-	start = find_start_path(line);
+	start = check_path(line);
 	if (start == -1)
 		return (0);
 	len = ft_len(line) - start;
@@ -29,7 +52,7 @@ int	set_so(t_cub *cub, char *line)
 	int	len;
 	int	fd;
 
-	start = find_start_path(line);
+	start = check_path(line);
 	if (start == -1)
 		return (0);
 	len = ft_len(line) - start;
@@ -52,7 +75,7 @@ int	set_we(t_cub *cub, char *line)
 	int	len;
 	int	fd;
 
-	start = find_start_path(line);
+	start = check_path(line);
 	if (start == -1)
 		return (0);
 	len = ft_len(line) - start;
@@ -75,7 +98,7 @@ int	set_ea(t_cub *cub, char *line)
 	int	len;
 	int	fd;
 
-	start = find_start_path(line);
+	start = check_path(line);
 	if (start == -1)
 		return (0);
 	len = ft_len(line) - start;

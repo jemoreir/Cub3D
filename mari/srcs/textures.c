@@ -5,7 +5,7 @@ static int	load_texture(t_cub *cub, t_texture *tex, char *path)
 	tex->img = mlx_xpm_file_to_image(cub->game.mlx, path,
 			&tex->width, &tex->height);
 	if (!tex->img)
-		return (0);
+		return (treat_error(T_CONTENT), 0);
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
 			&tex->line_len, &tex->endian);
 	if (!tex->addr)

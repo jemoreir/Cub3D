@@ -93,7 +93,9 @@ typedef enum e_error_type
 	T_ARG,
 	T_GNL,
 	T_MAP,
-	T_CONFIG
+	T_CONFIG,
+	T_PATH,
+	T_CONTENT
 }	t_error_type;
 
 typedef enum e_config_id
@@ -204,5 +206,7 @@ int		set_element_color_ceil(t_cub *cub, t_config *c,
 int		set_color(t_config_id id, t_cub *cub, char *line);
 int		valid_configs(t_cub *cub);
 int		parsing_cub(char *filename, t_cub *cub);
+void	init_bzero_game(t_game *game);
+void	free_game(t_game *game);
 
 #endif
