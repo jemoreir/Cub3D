@@ -13,13 +13,13 @@ static int	check_path(char *line)
 	len = ft_len(line);
 	if (len < 5)
 		return (treat_error(T_PATH), -1);
-	if (line[len - 1] != 'm' || line[len - 2] != 'p'
-		|| line[len - 3] != 'x' || line[len - 4] != '.')
-		return (treat_error(T_EXTENSION), -1);
 	if (stat(&line[start], &path_stat) || !S_ISREG(path_stat.st_mode))
 		return(treat_error(T_PATH), -1);
 	if (!path_stat.st_size)
 		return (treat_error(T_CONTENT), -1);
+	if (line[len - 1] != 'm' || line[len - 2] != 'p'
+		|| line[len - 3] != 'x' || line[len - 4] != '.')
+		return (treat_error(T_EXTENSION), -1);
 	return (start);
 }
 
