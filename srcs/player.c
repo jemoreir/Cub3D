@@ -6,7 +6,7 @@
 /*   By: jemoreir <jemoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 15:48:31 by jemoreir          #+#    #+#             */
-/*   Updated: 2026/10/06 21:12:27 by jemoreir         ###   ########.fr       */
+/*   Updated: 2026/10/09 17:58:02 by jemoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	set_north_south(t_player *player, char dir)
 	player->plane_y = 0;
 	if (dir == 'N')
 	{
-		player->dir_y = 1;
-		player->plane_x = -0.66;
+		player->dir_y = -1;
+		player->plane_x = 0.66;
 	}
 	else
 	{
-		player->dir_y = -1;
-		player->plane_x = 0.66;
+		player->dir_y = 1;
+		player->plane_x = -0.66;
 	}
 }
 
@@ -34,12 +34,12 @@ static void	set_east_west(t_player *player, char dir)
 	player->plane_x = 0;
 	if (dir == 'E')
 	{
-		player->dir_x = -1;
+		player->dir_x = 1;
 		player->plane_y = 0.66;
 	}
 	else
 	{
-		player->dir_x = 1;
+		player->dir_x = -1;
 		player->plane_y = -0.66;
 	}
 }
